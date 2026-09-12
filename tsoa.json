@@ -1,0 +1,29 @@
+{
+  "entryFile": "src/v1/@presentation/server.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": ["src/v1/@presentation/controllers/**/*.ts", "src/v1/@presentation/controllers/**/*.js"],
+  "spec": {
+    "outputDirectory": "src/v1/@presentation",
+    "specVersion": 3,
+    "basePath": "/v1",
+		"specFileBaseName": "swagger",
+    "controllerPathGlobs": ["src/v1/@presentation/controllers/**/*.ts", "src/v1/@presentation/controllers/**/*.js"],
+		"securityDefinitions": {
+			"jwt": {
+				"type": "apiKey",
+				"name": "Authorization",
+				"in": "header"
+			}
+		},
+		"security": [
+			{
+				"jwt": []
+			}
+		]
+  },
+  "routes": {
+		"basePath": "/v1",
+    "routesDir": "src/v1/@presentation/routes",
+		"authenticationModule": "src/v1/@presentation/middlewares/security/auth/auth-autentication.v1.ts"
+  }
+}

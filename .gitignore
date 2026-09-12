@@ -1,0 +1,37 @@
+# Dependências
+/node_modules
+node_modules
+
+# Builds de produção
+/dist
+/build
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ambiente
+.env
+#env.local
+.env.*.local
+
+# Cache
+/.turbo
+/.next
+/.nuxt
+/.cache
+/.vite
+/.eslintcache
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Docker
+docker-compose.override.yml

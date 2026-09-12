@@ -1,0 +1,132 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"IAppInfoResponse": {
+				"properties": {
+					"version": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"version"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"jwt": {
+				"type": "apiKey",
+				"name": "Authorization",
+				"in": "header"
+			}
+		}
+	},
+	"info": {
+		"title": "api",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/app/version": {
+			"get": {
+				"operationId": "GetAppVersion",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IAppInfoResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Routs app Genneral"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/app/auth/signin": {
+			"post": {
+				"operationId": "ProcessSignin",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"token": {
+											"type": "string"
+										},
+										"type": {
+											"anyOf": [
+												{
+													"type": "string"
+												},
+												{
+													"type": "string",
+													"enum": [
+														"Test",
+														"Bearer",
+														"Basic"
+													]
+												}
+											]
+										}
+									},
+									"required": [
+										"token",
+										"type"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Routs App Auth"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"hash": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"hash"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/v1"
+		}
+	]
+}
