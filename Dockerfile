@@ -10,7 +10,10 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml* ./
 
 # Instala as dependências completas (não só produção!)
-RUN npm install -g pnpm
+RUN npm install -g 
+
+RUN pnpm approve-builds @scarf/scarf
+
 RUN pnpm i
 
 
