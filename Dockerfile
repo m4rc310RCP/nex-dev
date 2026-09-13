@@ -9,13 +9,11 @@ WORKDIR /app
 # Copia os arquivos de dependência
 COPY package.json pnpm-lock.yaml* ./
 
-# Instala as dependências completas (não só produção!)
-RUN npm install -g 
+# Instala o pnpm
+RUN npm install -g pnpm
 
-RUN pnpm approve-builds @scarf/scarf
-
-RUN pnpm i
-
+# Instala as dependências
+RUN pnpm install
 
 # Copia o restante da aplicação
 COPY . .
@@ -26,14 +24,13 @@ RUN chown -R appuser:appuser /app
 # Trocar para o novo usuário
 USER appuser
 
+# Build da aplicação
 RUN pnpm build
 
-# Expõe a porta que a aplicação vai usar
+# Expõe a porta
 EXPOSE 3000
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:3000/health || exit 1
 
-# Comando para iniciar a aplicação
-# CMD ["pnpm", "start"]
 CMD ["node", "-r", "module-alias/register", "dist/v1/@presentation/server.js"]

@@ -1,4 +1,3 @@
-allowBuilds:
-  '@scarf/scarf': true
-  core-js: true
-  fsevents: true
+onlyBuiltDependencies:
+  - '@scarf/scarf'
+  - core-js
